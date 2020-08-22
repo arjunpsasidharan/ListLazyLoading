@@ -12,16 +12,17 @@ data class ResponseModel(
 
     @SerializedName("status")
     @Expose
-     var status: String? = null,
+    var status: String? = null,
 
     @SerializedName("thumbnail")
     @Expose
-     var thumbnail: String? = null,
+    var thumbnail: String? = null,
 
     @SerializedName("fileSize")
     @Expose
-     var fileSize: String? = null,
+    var fileSize: String? = null,
 
     @SerializedName("id")
     @Expose
-     var id: Int? = null)
+    var id: Int? = null
+)

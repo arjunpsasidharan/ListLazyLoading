@@ -13,11 +13,12 @@ object DateAndTimeUtils {
             val dateUtc = sdf.parse(date)
             val sdfLocal =
                 SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-                sdfLocal.format(dateUtc)
+            sdfLocal.format(dateUtc)
         } catch (e: Exception) {
             ""
         }
     }
+
     fun getTime(date: String): String? {
         var date = date
         return try {

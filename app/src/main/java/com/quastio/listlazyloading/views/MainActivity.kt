@@ -23,16 +23,16 @@ class MainActivity : AppCompatActivity(), DataRecyclerAdapter.Interaction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        gridLayoutManager= GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
-        data_recycler.layoutManager=gridLayoutManager
-        dataAdapter=DataRecyclerAdapter(this)
-        data_recycler.adapter=dataAdapter
+        gridLayoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+        data_recycler.layoutManager = gridLayoutManager
+        dataAdapter = DataRecyclerAdapter(this)
+        data_recycler.adapter = dataAdapter
         data_recycler.autoFitColumns(150)
 
-        dataViewModel=ViewModelProvider(this).get(DataViewModel::class.java)
+        dataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
         lifecycleScope.launch {
-            dataViewModel.dataList.collect{
-                if (this@MainActivity::dataAdapter.isInitialized){
+            dataViewModel.dataList.collect {
+                if (this@MainActivity::dataAdapter.isInitialized) {
                     dataAdapter.submitData(it)
                 }
             }
@@ -40,11 +40,13 @@ class MainActivity : AppCompatActivity(), DataRecyclerAdapter.Interaction {
     }
 
     override fun onItemSelected(position: Int, item: ResponseModel) {
-        item.id?.let { Toast.makeText(this, it.toString(),Toast.LENGTH_SHORT).show() }
+        item.id?.let { Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show() }
     }
+
     fun RecyclerView.autoFitColumns(columnWidth: Int) {
         val displayMetrics = this.context.resources.displayMetrics
-        val noOfColumns = ((displayMetrics.widthPixels / displayMetrics.density) / columnWidth).toInt()
+        val noOfColumns =
+            ((displayMetrics.widthPixels / displayMetrics.density) / columnWidth).toInt()
         this.layoutManager = GridLayoutManager(this.context, noOfColumns)
     }
 }

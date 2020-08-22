@@ -10,7 +10,10 @@ object DataDiffUtil {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: ResponseModel, newItem: ResponseModel): Boolean {
+            override fun areContentsTheSame(
+                oldItem: ResponseModel,
+                newItem: ResponseModel
+            ): Boolean {
                 return oldItem == newItem
             }
         }

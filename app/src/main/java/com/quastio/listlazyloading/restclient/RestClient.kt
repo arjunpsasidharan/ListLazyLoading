@@ -20,7 +20,8 @@ object RestClient {
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                     .addHeader("x-api-key", "jvmNAyPNr1JhiCeUlYmB2ae517p3Th0aGG6syqMb").build()
-                chain.proceed(request) }
+                chain.proceed(request)
+            }
             .build()
     }
 
@@ -46,7 +47,7 @@ object RestClient {
         @GET(NOW_PLAYING)
         suspend fun getDataList(
             @Query("offset") page: Int,
-            @Query("limit") limit: Int=6
+            @Query("limit") limit: Int = 6
         ): List<ResponseModel>
 
     }

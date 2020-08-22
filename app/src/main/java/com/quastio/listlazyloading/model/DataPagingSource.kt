@@ -3,7 +3,7 @@ package com.quastio.listlazyloading.model
 import androidx.paging.PagingSource
 import com.quastio.listlazyloading.restclient.RestClient
 
-class DataPagingSource: PagingSource<Int, ResponseModel>() {
+class DataPagingSource : PagingSource<Int, ResponseModel>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResponseModel> {
         try {
             // Start refresh at page 1 if undefined.
