@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.quastio.listlazyloading.R
 import com.quastio.listlazyloading.adapters.DataRecyclerAdapter
 import com.quastio.listlazyloading.model.ResponseModel
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity(), DataRecyclerAdapter.Interaction {
         data_recycler.layoutManager=gridLayoutManager
         dataAdapter=DataRecyclerAdapter(this)
         data_recycler.adapter=dataAdapter
+        data_recycler.autoFitColumns(150)
 
         dataViewModel=ViewModelProvider(this).get(DataViewModel::class.java)
         lifecycleScope.launch {
@@ -39,5 +41,10 @@ class MainActivity : AppCompatActivity(), DataRecyclerAdapter.Interaction {
 
     override fun onItemSelected(position: Int, item: ResponseModel) {
         item.id?.let { Toast.makeText(this, it.toString(),Toast.LENGTH_SHORT).show() }
+    }
+    fun RecyclerView.autoFitColumns(columnWidth: Int) {
+        val displayMetrics = this.context.resources.displayMetrics
+        val noOfColumns = ((displayMetrics.widthPixels / displayMetrics.density) / columnWidth).toInt()
+        this.layoutManager = GridLayoutManager(this.context, noOfColumns)
     }
 }
