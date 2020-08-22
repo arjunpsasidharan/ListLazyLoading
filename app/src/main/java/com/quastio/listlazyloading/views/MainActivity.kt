@@ -2,6 +2,7 @@ package com.quastio.listlazyloading.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingDataAdapter
@@ -37,6 +38,6 @@ class MainActivity : AppCompatActivity(), DataRecyclerAdapter.Interaction {
     }
 
     override fun onItemSelected(position: Int, item: ResponseModel) {
-
+        item.id?.let { Toast.makeText(this, it.toString(),Toast.LENGTH_SHORT).show() }
     }
 }
